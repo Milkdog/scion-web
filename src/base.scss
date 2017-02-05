@@ -1,0 +1,37 @@
+.header {
+  text-align: center;
+  padding: 4px;
+  font-weight: bold;
+  background-color: aliceblue;
+}
+
+.cardGroupRow {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+}
+
+.cardGroup {
+  width: 300px;
+  margin: 12px;
+
+  .groupTitle {
+    font-weight: bold;
+    text-align: center;
+  }
+}
+
+.card {
+
+  .cardTitle {
+    float: left;
+    margin-left: 4px;
+    font-weight: bold;
+  }
+
+  .cardSubtitle {
+    margin-right: 4px;
+    text-align: right;
+    font-style: italic;
+  }
+}

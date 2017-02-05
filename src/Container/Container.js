@@ -4,11 +4,13 @@ import StatsPage from '../StatsPage/StatsPage'
 
 import './container.scss'
 
+const { object } = React.PropTypes
+
 const pages = [
   {
     id: 'stats',
     name: 'Stats',
-    component: <StatsPage />
+    componentName: StatsPage
   },
   {
     id: 'boons-knacks',
@@ -42,21 +44,31 @@ class Container extends Component {
   }
 
   getPageComponent() {
+    const { database } = this.props
+
     const filteredPages = pages.filter((page) => {
       return page.id === this.state.selectedPage
     })
 
-    return filteredPages[0].component
+    const ThisPage = filteredPages[0].componentName
+
+    const pageProps = {
+      database
+    }
+
+    return <ThisPage { ...pageProps } />
   }
 
 
   render() {
     return (
       <div>
-        <div className="header">
-          Scion Character sheet
+        <div className="appTitle ">
+          Scion Character Sheet
         </div>
-        { this.getPageComponent() }
+        <div className="pageContents">
+          { this.getPageComponent() }
+        </div>
         <div className="footer">
           {
             pages.map((page, index) => {
@@ -71,6 +83,10 @@ class Container extends Component {
       </div>
     )
   }
+}
+
+Container.propTypes = {
+  database: object.isRequired
 }
 
 export default Container;

@@ -1,0 +1,7 @@
+@import '../base';
+
+.boxRow {
+  display: flex;
+  flex-flow: row nowrap;
+  margin: 4px 0;
+}
