@@ -1,0 +1,15 @@
+.footer {
+  position: absolute;
+  height: 40px;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background-color: #666;
+  color: #fff;
+  display: flex;
+  flex-direction: row;
+
+  .footerItem {
+    color: #fff;
+  }
+}
