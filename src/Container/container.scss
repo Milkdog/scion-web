@@ -1,0 +1,21 @@
+.footer {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background-color: #333;
+  color: #fff;
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+
+  .footerItem {
+    padding: 16px;
+    margin: auto;
+    color: #fff;
+
+    &:hover {
+      color: #ccc;
+    }
+  }
+}

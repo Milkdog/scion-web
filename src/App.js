@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import * as firebase from "firebase"
 
-import Page from './Page/Page'
+import Container from './Container/Container'
 
 import logo from './logo.svg'
 import './App.css'
@@ -47,7 +47,7 @@ class App extends Component {
 
   render() {
     return (
-      <Page />
+      <Container />
     )
   }
 }
