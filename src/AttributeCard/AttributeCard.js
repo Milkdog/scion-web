@@ -39,7 +39,6 @@ class AttributeCard extends Component {
   }
 
   onPress(isBoxActive, updateType) {
-    console.log('click')
     const change = isBoxActive ? -1 : 1
     const update = {}
     update[updateType] = this.state[updateType] + change

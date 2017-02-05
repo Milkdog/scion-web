@@ -11,6 +11,14 @@
   justify-content: center;
 }
 
+.cardGroupStack {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: flex-start;
+  align-content: center;
+  height: 300px;
+}
+
 .cardGroup {
   width: 300px;
   margin: 12px;
@@ -22,6 +30,7 @@
 }
 
 .card {
+  width: 300px;
 
   .cardTitle {
     float: left;
