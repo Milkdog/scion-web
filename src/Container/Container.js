@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
+import classNames from 'classnames'
 
 import StatsPage from '../StatsPage/StatsPage'
+import BoonsKnacksPage from '../BoonsKnacksPage/BoonsKnacksPage'
 
 import './container.scss'
 
@@ -10,11 +12,12 @@ const pages = [
   {
     id: 'stats',
     name: 'Stats',
-    componentName: StatsPage
+    component: StatsPage
   },
   {
     id: 'boons-knacks',
-    name: 'Boons & Knacks'
+    name: 'Boons & Knacks',
+    component: BoonsKnacksPage
   },
   {
     id: 'birthrights',
@@ -39,7 +42,7 @@ class Container extends Component {
     super(props)
 
     this.state = {
-      selectedPage: 'stats'
+      selectedPage: 'boons-knacks'
     }
   }
 
@@ -50,7 +53,7 @@ class Container extends Component {
       return page.id === this.state.selectedPage
     })
 
-    const ThisPage = filteredPages[0].componentName
+    const ThisPage = filteredPages[0].component
 
     const pageProps = {
       database
@@ -72,8 +75,12 @@ class Container extends Component {
         <div className="footer">
           {
             pages.map((page, index) => {
+              const itemClasses = classNames({
+                footerItem: true,
+                footerActive: this.state.selectedPage === page.id
+              })
               return (
-                <div key={ index } className="footerItem" onClick={() => { this.setState({ selectedPage: page.id})} }>
+                <div key={ index } className={ itemClasses } onClick={() => { this.setState({ selectedPage: page.id})} }>
                   { page.name }
                 </div>
               )

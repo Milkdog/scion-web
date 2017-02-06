@@ -1,5 +1,5 @@
 .appTitle {
-  height: 30px;
+  height: 20px;
   background-color: green;
   color: white;
   text-align: center;
@@ -29,12 +29,48 @@
   align-items: center;
 
   .footerItem {
-    padding: 16px;
-    margin: auto;
+    margin: 16px auto;
     color: #fff;
+
+    &.footerActive {
+      border-bottom: 2px solid white;
+    }
 
     &:hover {
       color: #ccc;
+    }
+  }
+}
+
+.btn:hover {
+  color: #999;
+}
+
+.modalClose {
+  float: right;
+}
+
+.form {
+  .inputRow {
+    display: flex;
+    clear: left;
+    margin: 4px 0;
+  }
+
+  .label {
+    width: 100px;
+  }
+
+  .input {
+    float: left;
+
+    input, textarea, select{
+      font-size: 14px;
+      width: 280px;
+    }
+
+    textarea {
+      height: 100px;
     }
   }
 }
