@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import * as firebase from "firebase"
+import * as firebase from 'firebase'
+import FontAwesome from 'react-fontawesome'
 
 import Container from './Container/Container'
 
@@ -51,7 +52,9 @@ class App extends Component {
 
     console.log(firebase.UserInfo.uid)
     this.state = {
-      database: firebase.database().ref('/users/').child(userId)
+      database: firebase.database().ref('/users/').child(userId),
+      isLoading: false,
+      isLoggedIn: true
     }
   }
 
@@ -77,7 +80,11 @@ class App extends Component {
   render() {
 
     if (!this.state.isLoggedIn) {
-      return <div>Logging in...</div>
+      return <FontAwesome
+        className="loader"
+        name="spinner"
+        size="5x"
+      />
     }
 
     const database = this.state.database.child('Fionnlagh (Finn)')

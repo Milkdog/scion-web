@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import classNames from 'classnames'
 import FontAwesome from 'react-fontawesome'
 
-class BoonCard extends Component {
+class KnackCard extends Component {
   constructor(props) {
     super(props)
 
@@ -48,13 +48,7 @@ class BoonCard extends Component {
           { this.props.name }
         </div>
         <div>
-          Rating: { this.props.rating }
-        </div>
-        <div>
-          Purview: { this.props.purview }
-        </div>
-        <div>
-          Dice: { this.props.dicePool }
+          Attr: { this.props.attribute }
         </div>
         <div>
           Cost: { this.props.cost }
@@ -67,4 +61,4 @@ class BoonCard extends Component {
   }
 }
 
-export default BoonCard
+export default KnackCard

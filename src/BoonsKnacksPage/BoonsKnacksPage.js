@@ -1,11 +1,9 @@
 import React, { Component } from 'react'
 
 import BoonsSection from '../BoonsSection/BoonsSection'
+import KnacksSection from '../KnacksSection/KnacksSection'
 
 import './boons-knacks-page.scss'
-
-// import BoonsSection from './BoonsSection.js'
-// import KnacksSection from './KnacksSection.js'
 
 const { object } = React.PropTypes
 
@@ -17,7 +15,7 @@ class BoonsKnacksPage extends Component {
           <BoonsSection database={ this.props.database } />
         </div>
         <div className="sectionContainer">
-          Knacks
+          <KnacksSection database={ this.props.database } />
         </div>
       </div>
     )
