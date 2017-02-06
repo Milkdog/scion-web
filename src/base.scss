@@ -1,3 +1,8 @@
+h1, h2, h3, h4, h5 {
+  margin: 0;
+  padding: 0;
+}
+
 button {
   font-size: 14px;
 }
@@ -21,6 +26,7 @@ button {
   justify-content: flex-start;
   align-content: center;
   height: 300px;
+  margin: 12px 0;
 }
 
 .cardGroup {
@@ -51,6 +57,14 @@ button {
 
 .btn:hover {
   color: #999;
+}
+
+.withButton {
+  float: left;
+}
+
+.headerButton {
+  margin-left: 48px;
 }
 
 .modalClose {
