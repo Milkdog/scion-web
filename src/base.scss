@@ -1,3 +1,7 @@
+button {
+  font-size: 14px;
+}
+
 .header {
   text-align: center;
   padding: 4px;
@@ -42,5 +46,48 @@
     margin-right: 4px;
     text-align: right;
     font-style: italic;
+  }
+}
+
+.btn:hover {
+  color: #999;
+}
+
+.modalClose {
+  float: right;
+}
+
+.form {
+  .inputRow {
+    display: flex;
+    clear: left;
+    margin: 4px 0;
+  }
+
+  .label {
+    width: 100px;
+  }
+
+  .formButton {
+    margin-left: 100px;
+  }
+
+  .input {
+    float: left;
+
+    input, textarea, select{
+      font-size: 14px;
+      width: 280px;
+    }
+
+    textarea {
+      height: 100px;
+    }
+  }
+}
+
+@media only screen and (max-device-width : 980px) {
+  .cardGroupStack {
+    height: auto;
   }
 }

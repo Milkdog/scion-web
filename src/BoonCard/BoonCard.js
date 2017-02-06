@@ -27,6 +27,8 @@ class BoonCard extends Component {
 
   render() {
     const deleteClasses = classNames({
+      controlItem: true,
+      btn: true,
       warning: this.state.isDeleteConfirm
     })
 
@@ -38,7 +40,7 @@ class BoonCard extends Component {
               name="pencil-square"
             />
           </div>
-          <div className="controlItem btn" onClick={ this.handleDelete.bind(this) }>
+          <div className={ deleteClasses } onClick={ this.handleDelete.bind(this) }>
             <FontAwesome
               name="window-close"
             />

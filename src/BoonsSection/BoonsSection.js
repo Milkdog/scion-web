@@ -60,7 +60,13 @@ class BoonsSection extends Component {
   handleToggleModal() {
     this.setState({
       isModalVisible: !this.state.isModalVisible,
-      isEdit: false
+      isEdit: false,
+      newName: '',
+      newRating: '',
+      newCost: '',
+      newPurview: '',
+      newDicePool: '',
+      newDescription: ''
     })
   }
 
@@ -122,6 +128,11 @@ class BoonsSection extends Component {
           isModalVisible: false
         })}
         contentLabel="Modify Boon"
+        style={{
+          content: {
+            width: '400px'
+          }
+        }}
       >
         <div className="modalClose btn" onClick={ this.handleToggleModal.bind(this) }>
           <FontAwesome
@@ -186,6 +197,13 @@ class BoonsSection extends Component {
               <textarea defaultValue={ this.state.newDescription } onChange={ (event) => this.setState({ newDescription: event.target.value }) } />
             </div>
           </div>
+
+          <button
+            className="formButton"
+            onClick={ this.state.isEdit ? this.handleUpdateBoon.bind(this) : this.handleAddBoon.bind(this) }
+          >
+            { this.state.isEdit ? 'Update' : 'Save' } Boon
+          </button>
         </div>
 
       </Modal>
@@ -212,7 +230,7 @@ class BoonsSection extends Component {
         <div className="titleContainer">
           <h2>Boons</h2>
           <button onClick={ this.handleToggleModal.bind(this) }>
-            Add
+            Add Boon
           </button>
         </div>
         <div className="cardList">
