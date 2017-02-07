@@ -3,6 +3,7 @@ import classNames from 'classnames'
 
 import StatsPage from '../StatsPage/StatsPage'
 import BoonsKnacksPage from '../BoonsKnacksPage/BoonsKnacksPage'
+import CombatPage from '../CombatPage'
 
 import './container.scss'
 
@@ -20,12 +21,9 @@ const pages = [
     component: BoonsKnacksPage
   },
   {
-    id: 'birthrights',
-    name: 'Birthrights'
-  },
-  {
     id: 'combat',
-    name: 'Combat'
+    name: 'Combat & Birthrights',
+    component: CombatPage
   },
   {
     id: 'character',
@@ -42,7 +40,7 @@ class Container extends Component {
     super(props)
 
     this.state = {
-      selectedPage: 'boons-knacks'
+      selectedPage: 'combat'
     }
   }
 

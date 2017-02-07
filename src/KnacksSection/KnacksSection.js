@@ -82,6 +82,7 @@ class KnacksSection extends Component {
   }
 
   handleUpdateKnack() {
+    console.log(this.getForm())
     this.props.database.child(this.getStoragePath()).child(this.state.editIndex).set(this.getForm())
 
     this.setState({
@@ -95,7 +96,7 @@ class KnacksSection extends Component {
       isEdit: true,
       editIndex: knack.index,
       newName: knack.name,
-      newAttribute: knack.epicAttribute,
+      newAttribute: knack.attribute,
       newCost: knack.cost,
       newDescription: knack.description
     })

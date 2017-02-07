@@ -55,6 +55,7 @@
     "react-dom": "^15.4.2",
     "react-fontawesome": "^1.5.0",
     "react-modal": "^1.6.5",
+    "react-select": "^1.0.0-rc.3",
     "sort-array": "^1.1.1"
   },
   "scripts": {
