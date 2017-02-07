@@ -5,6 +5,7 @@ import StatsPage from '../StatsPage/StatsPage'
 import BoonsKnacksPage from '../BoonsKnacksPage/BoonsKnacksPage'
 import CombatPage from '../CombatPage'
 
+import 'react-select/dist/react-select.css'
 import './container.scss'
 
 const { object } = React.PropTypes

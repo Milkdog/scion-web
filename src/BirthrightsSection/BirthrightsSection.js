@@ -2,13 +2,12 @@ import React, { Component } from 'react'
 import Modal from 'react-modal'
 import FontAwesome from 'react-fontawesome'
 import Select from 'react-select'
-import WeaponCard from '../WeaponCard'
-import DamageTypes from '../Constants/DamageTypes'
+import BirthrightCard from '../BirthrightCard'
 import Purviews from '../Constants/Purviews'
 
 const { object } = React.PropTypes
 
-class WeaponsSection extends Component {
+class BirthrightsSection extends Component {
   constructor(props) {
     super(props)
 
@@ -20,12 +19,9 @@ class WeaponsSection extends Component {
       newName: '',
       newRating: '',
       newPurview: '',
-      newDamageModifier: '0',
-      newDamageType: 'Bashing',
-      newAccuracyModifier: '0',
-      newSpeed: '0',
-      newRange: '0',
-      newDefenseValue: '0',
+      newBashSoak: '',
+      newLethalSoak: '',
+      newMobilityPenalty: '',
       newDescription: '',
       newIsActive: false
     }
@@ -87,12 +83,9 @@ class WeaponsSection extends Component {
       name: this.state.newName,
       rating: this.state.newRating,
       purview: this.state.newPurview,
-      damageModifier: this.state.newDamageModifier,
-      damageType: this.state.newDamageType,
-      accuracyModifier: this.state.newAccuracyModifier,
-      speed: this.state.newSpeed,
-      range: this.state.newRange,
-      defenseValue: this.state.newDefenseValue,
+      bashSoak: this.state.newBashSoak,
+      lethalSoak: this.state.newLethalSoak,
+      mobilityPenalty: this.state.newMobilityPenalty,
       description: this.state.newDescription,
       isActive: this.state.newIsActive
     }
@@ -123,12 +116,9 @@ class WeaponsSection extends Component {
       newName: item.name,
       newRating: item.rating,
       newPurview: item.purview,
-      newDamageModifier: item.damageModifier,
-      newDamageType: item.damageType,
-      newAccuracyModifier: item.accuracyModifier,
-      newSpeed: item.speed,
-      newRange: item.range,
-      newDefenseValue: item.defenseValue,
+      newBashSoak: item.bashSoak,
+      newLethalSoak: item.lethalSoak,
+      newMobilityPenalty: item.mobilityPenalty,
       newDescription: item.description,
       newIsActive: item.isActive
     })
@@ -152,7 +142,7 @@ class WeaponsSection extends Component {
   }
 
   getStoragePath() {
-    return 'weapons'
+    return 'birthrights'
   }
 
   renderModal() {
@@ -164,7 +154,7 @@ class WeaponsSection extends Component {
         onRequestClose={ () => this.setState({
           isModalVisible: false
         })}
-        contentLabel="Modify Weapon"
+        contentLabel="Modify Birthright"
         style={{
           content: {
             width: '400px'
@@ -206,60 +196,6 @@ class WeaponsSection extends Component {
           </div>
           <div className="inputRow">
             <div className="label">
-              Accuracy Modifier
-            </div>
-            <div className="input">
-              <input defaultValue={ this.state.newAccuracyModifier } onChange={ (event) => this.setState({ newAccuracyModifier: event.target.value }) } />
-            </div>
-          </div>
-          <div className="inputRow">
-            <div className="label">
-              Damage Modifier
-            </div>
-            <div className="input">
-              <input defaultValue={ this.state.newDamageModifier } onChange={ (event) => this.setState({ newDamageModifier: event.target.value }) } />
-            </div>
-          </div>
-          <div className="inputRow">
-            <div className="label">
-              Damage Type
-            </div>
-            <div className="input">
-              <select value={ this.state.newDamageType } onChange={ (event) => this.setState({ newDamageType: event.target.value }) }>
-                {
-                  DamageTypes.map((type, index) => {
-                    return <option key={ index } label={ type } value={ type }/>
-                  })
-                }
-              </select>
-            </div>
-          </div>
-          <div className="inputRow">
-            <div className="label">
-              Speed
-            </div>
-            <div className="input">
-              <input defaultValue={ this.state.newSpeed } onChange={ (event) => this.setState({ newSpeed: event.target.value }) } />
-            </div>
-          </div>
-          <div className="inputRow">
-            <div className="label">
-              Range
-            </div>
-            <div className="input">
-              <input defaultValue={ this.state.newRange } onChange={ (event) => this.setState({ newRange: event.target.value }) } />
-            </div>
-          </div>
-          <div className="inputRow">
-            <div className="label">
-              Defense Value
-            </div>
-            <div className="input">
-              <input defaultValue={ this.state.newDefenseValue } onChange={ (event) => this.setState({ newDefenseValue: event.target.value }) } />
-            </div>
-          </div>
-          <div className="inputRow">
-            <div className="label">
               Description
             </div>
             <div className="input">
@@ -271,7 +207,7 @@ class WeaponsSection extends Component {
             className="formButton"
             onClick={ this.state.isEdit ? this.handleUpdate.bind(this) : this.handleAdd.bind(this) }
           >
-            { this.state.isEdit ? 'Update' : 'Save' } Weapon
+            { this.state.isEdit ? 'Update' : 'Save' } Birthright
           </button>
         </div>
 
@@ -282,7 +218,7 @@ class WeaponsSection extends Component {
   renderItems() {
     return this.state.items.map((item, index) => {
       return (
-        <WeaponCard
+        <BirthrightCard
           key={ index }
           doActivate={ this.handleActivate.bind(this, item.index) }
           onDelete={ () => {this.handleDelete(item.index)} }
@@ -298,7 +234,7 @@ class WeaponsSection extends Component {
       <div>
         { this.renderModal() }
         <div className="header">
-          Weapons
+          Other Birthrights
           <button onClick={ this.handleToggleModal.bind(this) }>
             Add
           </button>
@@ -311,8 +247,8 @@ class WeaponsSection extends Component {
   }
 }
 
-WeaponsSection.propTypes = {
+BirthrightsSection.propTypes = {
   database: object.isRequired
 }
 
-export default WeaponsSection
+export default BirthrightsSection

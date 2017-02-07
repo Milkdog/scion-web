@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import classNames from 'classnames'
 import FontAwesome from 'react-fontawesome'
 
-class WeaponCard extends Component {
+class BirthrightCard extends Component {
   constructor(props) {
     super(props)
 
@@ -58,21 +58,6 @@ class WeaponCard extends Component {
         <div>
           Purviews: { this.props.purview }
         </div>
-        <div>
-          Accuracy Modifier: +{ this.props.accuracyModifier }
-        </div>
-        <div>
-          Damage: +{ this.props.damageModifier } { this.props.damageType.charAt(0) }
-        </div>
-        <div>
-          Speed: { this.props.speed }
-        </div>
-        <div>
-          Defense Value: { this.props.defenseValue }
-        </div>
-        <div>
-          Range: { this.props.range }
-        </div>
         <div className="descriptionContainer">
           { this.props.description }
         </div>
@@ -81,4 +66,4 @@ class WeaponCard extends Component {
   }
 }
 
-export default WeaponCard
+export default BirthrightCard
