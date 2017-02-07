@@ -9,7 +9,6 @@ var paths = require('./paths');
 var getClientEnvironment = require('./env');
 
 
-
 function ensureSlash(path, needsSlash) {
   var hasSlash = path.endsWith('/');
   if (hasSlash && !needsSlash) {
@@ -147,12 +146,12 @@ module.exports = {
       // in the main CSS file.
       {
         test: /\.css$/,
-        loader: ExtractTextPlugin.extract('style', 'css?minimize&importLoaders=1!postcss')
+        loader: ExtractTextPlugin.extract('style', 'css?minimize&importLoaders=1!postcss!resolve-url')
         // Note: this won't work without `new ExtractTextPlugin()` in `plugins`.
       },
       {
         test: /\.scss$/,
-        loaders: ExtractTextPlugin.extract("style-loader", "css-loader?minimize", "sass-loader")
+        loader: ExtractTextPlugin.extract("style-loader", "css-loader?minimize!resolve-url!sass?sourceMap")
       },
       // JSON is not enabled by default in Webpack but both Node and Browserify
       // allow it implicitly so we also enable it.
