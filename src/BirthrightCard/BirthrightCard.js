@@ -25,8 +25,7 @@ class BirthrightCard extends Component {
 
   render() {
     const titleClasses = classNames({
-      title: true,
-      selectedCardTitle: this.props.isActive
+      title: true
     })
 
     const deleteClasses = classNames({
@@ -49,7 +48,7 @@ class BirthrightCard extends Component {
             />
           </div>
         </div>
-        <div className={ titleClasses } onClick={ this.props.doActivate.bind(this) }>
+        <div className={ titleClasses }>
           { this.props.name }
         </div>
         <div>

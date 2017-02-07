@@ -68,12 +68,9 @@ class ArmorSection extends Component {
       newName: '',
       newRating: '',
       newPurview: '',
-      newDamageModifier: '0',
-      newDamageType: 'Bashing',
-      newAccuracyModifier: '0',
-      newSpeed: '0',
-      newRange: '0',
-      newDefenseValue: '0',
+      newBashSoak: '',
+      newLethalSoak: '',
+      newMobilityPenalty: '',
       newDescription: '',
     })
   }
@@ -167,7 +164,7 @@ class ArmorSection extends Component {
           />
         </div>
         <h2>
-          { this.state.isEdit ? 'Edit' : 'Add'} Knack
+          { this.state.isEdit ? 'Edit' : 'Add'} Armor
         </h2>
         <div className="form">
           <div className="inputRow">

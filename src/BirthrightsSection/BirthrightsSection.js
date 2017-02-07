@@ -22,8 +22,7 @@ class BirthrightsSection extends Component {
       newBashSoak: '',
       newLethalSoak: '',
       newMobilityPenalty: '',
-      newDescription: '',
-      newIsActive: false
+      newDescription: ''
     }
   }
 
@@ -68,12 +67,6 @@ class BirthrightsSection extends Component {
       newName: '',
       newRating: '',
       newPurview: '',
-      newDamageModifier: '0',
-      newDamageType: 'Bashing',
-      newAccuracyModifier: '0',
-      newSpeed: '0',
-      newRange: '0',
-      newDefenseValue: '0',
       newDescription: '',
     })
   }
@@ -83,11 +76,7 @@ class BirthrightsSection extends Component {
       name: this.state.newName,
       rating: this.state.newRating,
       purview: this.state.newPurview,
-      bashSoak: this.state.newBashSoak,
-      lethalSoak: this.state.newLethalSoak,
-      mobilityPenalty: this.state.newMobilityPenalty,
-      description: this.state.newDescription,
-      isActive: this.state.newIsActive
+      description: this.state.newDescription
     }
   }
 
@@ -116,29 +105,13 @@ class BirthrightsSection extends Component {
       newName: item.name,
       newRating: item.rating,
       newPurview: item.purview,
-      newBashSoak: item.bashSoak,
-      newLethalSoak: item.lethalSoak,
-      newMobilityPenalty: item.mobilityPenalty,
-      newDescription: item.description,
-      newIsActive: item.isActive
+      newDescription: item.description
     })
   }
 
   handleDelete(index) {
     this.props.database.child(this.getStoragePath()).child(index).remove()
     this.getItemsFromDb()
-  }
-
-  handleActivate(index) {
-    // Deactivate the other items
-    for (let [ itemIndex, item ] of Object.entries(this.state.items)) {
-      if (item.isActive) {
-        this.props.database.child(this.getStoragePath()).child(itemIndex).child('isActive').set(false)
-      }
-    }
-
-    // Activate this item
-    this.props.database.child(this.getStoragePath()).child(index).child('isActive').set(true)
   }
 
   getStoragePath() {
@@ -167,7 +140,7 @@ class BirthrightsSection extends Component {
           />
         </div>
         <h2>
-          { this.state.isEdit ? 'Edit' : 'Add'} Knack
+          { this.state.isEdit ? 'Edit' : 'Add'} Birthright
         </h2>
         <div className="form">
           <div className="inputRow">
@@ -220,7 +193,6 @@ class BirthrightsSection extends Component {
       return (
         <BirthrightCard
           key={ index }
-          doActivate={ this.handleActivate.bind(this, item.index) }
           onDelete={ () => {this.handleDelete(item.index)} }
           onEdit={ this.handleEdit.bind(this, item) }
           { ...item }

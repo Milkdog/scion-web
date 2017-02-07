@@ -29,14 +29,18 @@ class App extends Component {
   promptLogin() {
     const provider = new firebase.auth.FacebookAuthProvider()
 
-    let userId = null
-
     firebase.auth().signInWithPopup(provider).then(function(result) {
       // // This gives you a Facebook Access Token. You can use it to access the Facebook API.
       // var token = result.credential.accessToken;
       // // The signed-in user info.
       const user = result.user;
-      userId = user.uid
+      const userId = user.uid
+
+      this.state = {
+        database: firebase.database().ref('/users/').child(userId),
+        isLoading: false,
+        isLoggedIn: true
+      }
 
       // // ...
     }).catch(function(error) {
@@ -48,14 +52,8 @@ class App extends Component {
       // // The firebase.auth.AuthCredential type that was used.
       // var credential = error.credential;
       // // ...
+      console.log(error)
     })
-
-    console.log(firebase.UserInfo.uid)
-    this.state = {
-      database: firebase.database().ref('/users/').child(userId),
-      isLoading: false,
-      isLoggedIn: true
-    }
   }
 
   componentDidMount() {
