@@ -227,9 +227,9 @@ class BoonsSection extends Component {
     return (
       <div>
         { this.renderModal() }
-        <div className="titleContainer">
-          <h2 className="withButton">Boons</h2>
-          <button className="headerButton" onClick={ this.handleToggleModal.bind(this) }>
+        <div className="header">
+          Boons
+          <button onClick={ this.handleToggleModal.bind(this) }>
             Add Boon
           </button>
         </div>

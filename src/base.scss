@@ -154,6 +154,34 @@ button {
   }
 }
 
+.statGroupTitle {
+  margin-bottom: 2px;
+  padding: 8px 0 2px;
+  border-bottom: 1px solid black;
+}
+
+.statGroup {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.statItem {
+  display: flex;
+  flex-flow: row nowrap;
+  width: 180px;
+  margin: 1px;
+  padding: 1px;
+
+  .statName {
+    width: 120px;
+    font-weight: bold;
+  }
+
+  .statValue {
+    margin-left: 8px;
+  }
+}
+
 @media only screen and (max-device-width : 980px) {
   .cardGroupStack {
     height: auto;

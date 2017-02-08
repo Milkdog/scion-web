@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import ArmorSection from '../ArmorSection'
 import BirthrightsSection from '../BirthrightsSection'
+import CombatStatsSection from '../CombatStatsSection'
 import WeaponSection from '../WeaponSection'
 
 const { object } = React.PropTypes
@@ -15,7 +16,7 @@ class CombatPage extends Component {
           <BirthrightsSection database={ this.props.database } />
         </div>
         <div className="sectionContainer">
-          Combat Stats
+          <CombatStatsSection database={ this.props.database } />
         </div>
       </div>
     )

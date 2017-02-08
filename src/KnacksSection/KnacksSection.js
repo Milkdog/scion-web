@@ -203,9 +203,9 @@ class KnacksSection extends Component {
     return (
       <div>
         { this.renderModal() }
-        <div className="titleContainer">
-          <h2 className="withButton">Knacks</h2>
-          <button className="headerButton" onClick={ this.handleToggleModal.bind(this) }>
+        <div className="header">
+          Knacks
+          <button onClick={ this.handleToggleModal.bind(this) }>
             Add Knack
           </button>
         </div>
