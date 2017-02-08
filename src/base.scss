@@ -1,3 +1,5 @@
+$selectedTitle: green;
+
 h1, h2, h3, h4, h5 {
   margin: 0;
   padding: 0;
@@ -64,6 +66,11 @@ button {
     font-style: italic;
   }
 }
+
+.selectedCardTitle {
+  color: $selectedTitle;
+}
+
 .sectionContainer {
   width: 50%;
   margin: 12px;
@@ -172,9 +179,14 @@ button {
   margin: 1px;
   padding: 1px;
 
+  &.statSelected .statName {
+    color: $selectedTitle;
+  }
+
   .statName {
     width: 120px;
     font-weight: bold;
+    cursor: pointer;
   }
 
   .statValue {
