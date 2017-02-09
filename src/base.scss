@@ -1,5 +1,13 @@
 $selectedTitle: green;
 
+.clickable {
+  cursor: pointer;
+}
+
+body {
+  font-size: 14px;
+}
+
 h1, h2, h3, h4, h5 {
   margin: 0;
   padding: 0;
@@ -104,6 +112,7 @@ button {
 
   .title {
     font-weight: bold;
+    @extend .clickable;
   }
 
   .descriptionContainer {
@@ -186,7 +195,7 @@ button {
   .statName {
     width: 120px;
     font-weight: bold;
-    cursor: pointer;
+    @extend .clickable;
   }
 
   .statValue {

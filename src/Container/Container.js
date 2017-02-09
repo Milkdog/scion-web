@@ -4,6 +4,7 @@ import classNames from 'classnames'
 import StatsPage from '../StatsPage/StatsPage'
 import BoonsKnacksPage from '../BoonsKnacksPage/BoonsKnacksPage'
 import CombatPage from '../CombatPage'
+import DiceModal from '../DiceModal'
 
 import 'react-select/dist/react-select.css'
 import './container.scss'
@@ -32,7 +33,8 @@ const pages = [
   },
   {
     id: 'roll',
-    name: 'Roll Dice'
+    name: 'Roll Dice',
+    isModal: true
   }
 ]
 
@@ -41,7 +43,8 @@ class Container extends Component {
     super(props)
 
     this.state = {
-      selectedPage: 'combat'
+      selectedPage: 'combat',
+      isDiceModalVisible: true
     }
   }
 
@@ -61,6 +64,11 @@ class Container extends Component {
     return <ThisPage { ...pageProps } />
   }
 
+  handleToggleDiceModal() {
+    this.setState({
+      isDiceModalVisible: !this.state.isDiceModalVisible
+    })
+  }
 
   render() {
     return (
@@ -71,6 +79,7 @@ class Container extends Component {
         <div className="pageContents">
           { this.getPageComponent() }
         </div>
+        <DiceModal isVisible={ this.state.isDiceModalVisible } database={ this.props.database } />
         <div className="footer">
           {
             pages.map((page, index) => {
@@ -78,8 +87,21 @@ class Container extends Component {
                 footerItem: true,
                 footerActive: this.state.selectedPage === page.id
               })
+
               return (
-                <div key={ index } className={ itemClasses } onClick={() => { this.setState({ selectedPage: page.id})} }>
+                <div key={ index } className={ itemClasses } onClick={() => {
+                  if (page.isModal) {
+                    switch (page.id) {
+                      case 'roll':
+                        this.handleToggleDiceModal()
+                        break
+                    }
+                  } else {
+                    this.setState({
+                      selectedPage: page.id
+                    })
+                  }
+                } }>
                   { page.name }
                 </div>
               )

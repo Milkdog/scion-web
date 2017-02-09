@@ -24,6 +24,7 @@
   bottom: 0;
   right: 0;
   left: 0;
+  height: 50px;
   background-color: #333;
   color: #fff;
   display: flex;
@@ -32,14 +33,44 @@
 
   .footerItem {
     margin: 16px auto;
-    color: #fff;
+    color: #bbb;
+    @extend .clickable;
 
     &.footerActive {
-      border-bottom: 2px solid white;
+      color: #fff;
     }
 
     &:hover {
       color: #ccc;
     }
+  }
+}
+
+.diceModalContainer {
+  position: absolute;
+  right: 40px;
+  bottom: 50px;
+  border: 2px solid #333;
+  border-bottom: none;
+  background-color: white;
+  padding: 16px;
+  text-align: center;
+
+  .diceSuccesses {
+    font-size: 60px;
+    font-weight: bold;
+  }
+
+  .diceModalLabel {
+    font-size: 10px;
+  }
+
+
+  .changeDiceButtons {
+    margin: 12px 0;
+  }
+
+  .diceInfo {
+    text-align: left;
   }
 }

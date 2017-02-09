@@ -139,7 +139,7 @@ class WeaponsSection extends Component {
     this.getItemsFromDb()
   }
 
-  handleActivate(index) {
+  handleActivate(selectedIndex) {
     // Deactivate the other items
     for (let [ itemIndex, item ] of Object.entries(this.state.items)) {
       if (item.isActive) {
@@ -148,7 +148,7 @@ class WeaponsSection extends Component {
     }
 
     // Activate this item
-    this.props.database.child(this.getStoragePath()).child(index).child('isActive').set(true)
+    this.props.database.child(this.getStoragePath()).child(selectedIndex).child('isActive').set(true)
   }
 
   getStoragePath() {
