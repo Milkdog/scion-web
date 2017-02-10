@@ -32,6 +32,7 @@ class DiceModal extends Component {
         let autoSuccess = 0
         let rawBonus = 0
 
+        // eslint-disable-next-line
         for (const [ name, stats ] of Object.entries(snapshotData.val())) {
           dice += stats.rating ? stats.rating : 0
           autoSuccess += this.getEpicModifier(stats.epic)

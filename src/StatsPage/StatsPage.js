@@ -3,6 +3,9 @@ import AbilityCard from '../AbilityCard/AbilityCard'
 import AttributeCard from '../AttributeCard/AttributeCard'
 import Abilities from '../Constants/Abilities'
 import Attributes from '../Constants/Attributes'
+import ExperienceCard from '../ExperienceCard'
+import LegendCard from '../LegendCard'
+import WillpowerCard from '../WillpowerCard'
 
 import './stats-page.scss'
 
@@ -122,6 +125,18 @@ class StatsPage extends Component {
         </div>
         <div className="cardGroupStack">
           { this.renderAbilities() }
+        </div>
+
+        <div className="cardGroupRow">
+          <div className="cardGroup">
+            <LegendCard database={ this.props.database } />
+          </div>
+          <div className="cardGroup">
+            <WillpowerCard database={ this.props.database } />
+          </div>
+          <div className="cardGroup">
+            <ExperienceCard database={ this.props.database } />
+          </div>
         </div>
 
       </div>

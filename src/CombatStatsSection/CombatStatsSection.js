@@ -38,7 +38,7 @@ export default class CombatStatsSection extends Component {
   }
 
   getEpicModifier(epicRating) {
-    if (!epicRating || epicRating == 0) {
+    if (!epicRating || epicRating === 0) {
       return 0
     }
 
@@ -47,6 +47,7 @@ export default class CombatStatsSection extends Component {
 
   getActiveWeapon() {
     if (this.state.stats.weapons && this.state.stats.weapons.length > 0) {
+      // eslint-disable-next-line
       for (let [ itemIndex, item ] of Object.entries(this.state.stats.weapons)) {
         if (item.isActive) {
           return item
@@ -64,6 +65,7 @@ export default class CombatStatsSection extends Component {
 
   getActiveArmor() {
     if (this.state.stats.armor && this.state.stats.armor.length > 0) {
+      // eslint-disable-next-line
       for (let [ itemIndex, item ] of Object.entries(this.state.stats.armor)) {
         if (item.isActive) {
           return item

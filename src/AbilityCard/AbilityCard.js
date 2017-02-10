@@ -3,7 +3,7 @@ import Box from '../Box/Box'
 
 import './ability-card.scss'
 
-const { bool, string } = React.PropTypes
+const { string } = React.PropTypes
 
 class AbilityCard extends Component {
   constructor(props) {
@@ -111,7 +111,7 @@ class AbilityCard extends Component {
   }
 
   render() {
-    if (!this.props.showEmpty && this.state.rating == 0)
+    if (!this.props.showEmpty && this.state.rating === 0)
       return null
 
     return (

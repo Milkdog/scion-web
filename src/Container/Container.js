@@ -43,8 +43,8 @@ class Container extends Component {
     super(props)
 
     this.state = {
-      selectedPage: 'combat',
-      isDiceModalVisible: true
+      selectedPage: 'stats',
+      isDiceModalVisible: false
     }
   }
 
@@ -93,6 +93,7 @@ class Container extends Component {
                   if (page.isModal) {
                     switch (page.id) {
                       case 'roll':
+                      default:
                         this.handleToggleDiceModal()
                         break
                     }

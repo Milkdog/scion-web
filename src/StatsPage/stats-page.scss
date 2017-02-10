@@ -1,2 +1,29 @@
 @import '../base';
 
+.header.leftHeader {
+  text-align: left;
+}
+
+input.points {
+  width: 20px;
+  text-align: right;
+  padding: 0;
+  margin: -2px 4px 0;
+}
+
+.statsInput {
+  float: right;
+}
+
+.experienceInputs {
+  margin-top: 4px;
+  display: flex;
+
+  .inputGroup {
+    width: 140px;
+
+    input {
+      width: 30px;
+    }
+  }
+}
