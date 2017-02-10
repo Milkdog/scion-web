@@ -3,15 +3,19 @@ import * as firebase from 'firebase'
 import FontAwesome from 'react-fontawesome'
 
 import Container from './Container/Container'
+import SelectCharacter from './SelectCharacter'
 
 import './App.css'
+
+const storageCharacterKey = '@scion:character'
 
 class App extends Component {
   constructor(props) {
     super(props)
 
     this.state = {
-      isLoggedIn: false
+      isLoggedIn: false,
+      character: ''
     }
 
     // Initialize Firebase
@@ -57,6 +61,12 @@ class App extends Component {
   }
 
   componentDidMount() {
+    localStorage.getItem(storageCharacterKey, (error, value) => {
+      this.setState({
+        character: value
+      })
+    })
+
     firebase.auth().onAuthStateChanged((user) => {
       if (user === null) {
         this.promptLogin()
@@ -75,8 +85,16 @@ class App extends Component {
     })
   }
 
-  render() {
+  setCharacter(name) {
+    console.log(name)
+    localStorage.setItem(storageCharacterKey, name)
 
+    this.setState({
+      character: name
+    })
+  }
+
+  render() {
     if (!this.state.isLoggedIn) {
       return <FontAwesome
         className="loader"
@@ -85,9 +103,13 @@ class App extends Component {
       />
     }
 
-    const database = this.state.database.child('Fionnlagh (Finn)')
+    if (!this.state.character) {
+      return <SelectCharacter database={ this.state.database } doSetCharacter={ this.setCharacter.bind(this) } />
+    }
+
+    const database = this.state.database.child(this.state.character)
     return (
-      <Container database={ database } />
+      <Container database={ database } character={ this.state.character } doSetCharacter={ this.setCharacter.bind(this) } />
     )
   }
 }

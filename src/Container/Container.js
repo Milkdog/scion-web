@@ -3,13 +3,14 @@ import classNames from 'classnames'
 
 import StatsPage from '../StatsPage/StatsPage'
 import BoonsKnacksPage from '../BoonsKnacksPage/BoonsKnacksPage'
+import CharacterPage from '../CharacterPage'
 import CombatPage from '../CombatPage'
 import DiceModal from '../DiceModal'
 
 import 'react-select/dist/react-select.css'
 import './container.scss'
 
-const { object } = React.PropTypes
+const { string, object, func } = React.PropTypes
 
 const pages = [
   {
@@ -29,7 +30,8 @@ const pages = [
   },
   {
     id: 'character',
-    name: 'Character'
+    name: 'Character',
+    component: CharacterPage
   },
   {
     id: 'roll',
@@ -48,6 +50,15 @@ class Container extends Component {
     }
   }
 
+  componentDidMount() {
+    console.log(this.props.character)
+    if (!this.props.character) {
+      this.setState({
+        selectedPage: 'character'
+      })
+    }
+  }
+
   getPageComponent() {
     const { database } = this.props
 
@@ -58,7 +69,8 @@ class Container extends Component {
     const ThisPage = filteredPages[0].component
 
     const pageProps = {
-      database
+      database,
+      doSetCharacter: this.props.doSetCharacter
     }
 
     return <ThisPage { ...pageProps } />
@@ -115,7 +127,9 @@ class Container extends Component {
 }
 
 Container.propTypes = {
-  database: object.isRequired
+  database: object.isRequired,
+  character: string,
+  doSetCharacter: func.isRequired
 }
 
 export default Container;
