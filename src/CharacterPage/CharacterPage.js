@@ -29,6 +29,10 @@ class CharacterPage extends Component {
     })
   }
 
+  componentWillUnmount() {
+    this.props.database.child(this.getStoragePath()).off('value')
+  }
+
   saveData(data) {
     if(this.state.isLoaded) {
       this.setState(data, () => {

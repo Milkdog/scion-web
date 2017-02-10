@@ -86,7 +86,6 @@ class App extends Component {
   }
 
   setCharacter(name) {
-    console.log(name)
     localStorage.setItem(storageCharacterKey, name)
 
     this.setState({

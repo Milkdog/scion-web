@@ -30,10 +30,17 @@ class SelectCharacter extends Component {
     })
   }
 
+  componentWillUnmount() {
+    this.props.database.off('value')
+  }
+
   render() {
     return (
       <div className="characterContainer">
         <Select.Creatable
+          promptTextCreator={ (label) => {
+            return 'Create character "' + label + '"'
+          }}
           options={ this.state.characters }
           onChange={ (option) => this.props.doSetCharacter(option.value) }
         />
