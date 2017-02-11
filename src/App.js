@@ -61,10 +61,9 @@ class App extends Component {
   }
 
   componentDidMount() {
-    localStorage.getItem(storageCharacterKey, (error, value) => {
-      this.setState({
-        character: value
-      })
+    const storedCharacter = localStorage.getItem(storageCharacterKey)
+    this.setState({
+      character: storedCharacter
     })
 
     firebase.auth().onAuthStateChanged((user) => {

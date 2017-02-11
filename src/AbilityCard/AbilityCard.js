@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
+import Modal from 'react-modal'
+import FontAwesome from 'react-fontawesome'
 import Box from '../Box/Box'
 
 import './ability-card.scss'
 
-const { string } = React.PropTypes
+const { string, object, bool } = React.PropTypes
 
 class AbilityCard extends Component {
   constructor(props) {
@@ -11,10 +13,10 @@ class AbilityCard extends Component {
 
     this.state = {
       rating: 0,
-      specialty: this.props.specialty,
-      isShowSpecialty: false,
+      specialty: false,
       specialtyName: '',
-      isFavored: false
+      isFavored: false,
+      isModalVisible: false
     }
   }
 
@@ -37,7 +39,10 @@ class AbilityCard extends Component {
 
   saveData(data) {
     this.setState(data, () => {
-      this.props.database.child(this.getStoragePath()).child(this.props.title).set(this.state)
+      this.props.database.child(this.getStoragePath()).child(this.props.title).set({
+        specialty: this.props.specialty,
+        ...this.state
+      })
     })
   }
 
@@ -46,14 +51,6 @@ class AbilityCard extends Component {
   }
 
   onPressIncrement(isBoxActive, updateType) {
-    // On first click, get the specialty name
-    if (this.props.specialty && this.state[updateType] === 0) {
-      this.setState({
-        isShowSpecialty: true
-      })
-      return false
-    }
-
     const change = isBoxActive ? -1 : 1
     const update = {}
     update[updateType] = this.state[updateType] + change
@@ -66,15 +63,16 @@ class AbilityCard extends Component {
     })
   }
 
-  handleAddSpecialty(name) {
+  handleAddSpecialty() {
+    const dbPath = this.props.title + ' (' + this.state.specialtyName + ')'
+    this.props.database.child(this.getStoragePath()).child(dbPath).set({
+      editable: true,
+      isFavored: this.state.isFavored,
+      rating: 1
+    })
+
     this.setState({
-      isShowSpecialty: false,
-    }, () => {
-      const dbPath = this.props.title + ' (' + name + ')'
-      this.props.database.child(this.getStoragePath()).child(dbPath).set({
-        isFavored: this.state.isFavored,
-        rating: 1
-      })
+      isModalVisible: false
     })
   }
 
@@ -98,16 +96,60 @@ class AbilityCard extends Component {
   }
 
   renderAbilityContent() {
-    // if (this.state.isShowSpecialty) {
-    //   return (
-    //     <TextInput
-    //       placeholder='Specialty Type'
-    //       onSubmitEditing={(event) => {this.handleAddSpecialty(event.nativeEvent.text)}}
-    //     />
-    //   )
-    // }
+    if (this.props.specialty) {
+      return (
+        <div className="clickable" onClick={ () => { this.setState({ isModalVisible: true }) } }>
+          Select specialty <FontAwesome name="arrow-circle-o-right" />
+
+        </div>
+      )
+    }
 
     return this.renderRatingBoxes()
+  }
+
+  renderModal() {
+    return (
+      <Modal
+        isOpen={ this.state.isModalVisible }
+        onRequestClose={ () => this.setState({
+          isModalVisible: false
+        })}
+        contentLabel="Special Ability"
+        style={{
+          content: {
+            width: '400px'
+          }
+        }}
+      >
+        <div className="modalClose btn" onClick={ () => { this.setState({ isModalVisible: false })} }>
+          <FontAwesome
+            name="window-close"
+          />
+        </div>
+        <h2>
+          { this.state.isEdit ? 'Edit' : 'Add'} Specialty for { this.props.title }
+        </h2>
+        <div className="form">
+          <div className="inputRow">
+            <div className="label">
+              Specialty
+            </div>
+            <div className="input">
+              <input  onChange={ (event) => this.setState({ specialtyName: event.target.value}) } />
+            </div>
+          </div>
+
+          <button
+            className="formButton"
+            onClick={ this.handleAddSpecialty.bind(this) }
+          >
+            { this.state.isEdit ? 'Update' : 'Save' } Special Ability
+          </button>
+        </div>
+
+      </Modal>
+    )
   }
 
   render() {
@@ -116,6 +158,7 @@ class AbilityCard extends Component {
 
     return (
       <div className="card abilityCard">
+        { this.renderModal() }
         <div className="favoredBox">
           { this.renderFavoredBox() }
         </div>
@@ -131,7 +174,10 @@ class AbilityCard extends Component {
 }
 
 AbilityCard.propTypes = {
-  title: string.isRequired
+  database: object.isRequired,
+  title: string.isRequired,
+  specialty: bool,
+  showEmpty: bool
 }
 
 export default AbilityCard

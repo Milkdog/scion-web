@@ -51,7 +51,6 @@ class Container extends Component {
   }
 
   componentDidMount() {
-    console.log(this.props.character)
     if (!this.props.character) {
       this.setState({
         selectedPage: 'character'

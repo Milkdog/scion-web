@@ -27,12 +27,11 @@ class StatsPage extends Component {
     this.props.database.child('ability').on('value', (snapshotData) => {
       let dbAbilities = []
 
-      if (snapshotData.val()) {
-        for (let [ name, ability ] of Object.entries(snapshotData.val())) {
-          ability.name = name
-          dbAbilities.push(ability)
-        }
-      }
+      snapshotData.forEach((childSnapshot) => {
+        const ability = childSnapshot.val()
+        ability.name = childSnapshot.key
+        dbAbilities.push(ability)
+      })
 
       this.setState({
         dbAbilities,
@@ -100,11 +99,11 @@ class StatsPage extends Component {
     return renderAbilities.map((ability, index) => {
       return (
         <AbilityCard
-          key={index}
-          database={this.props.database}
-          showEmpty={this.state.isShowEmptyAbilities}
-          specialty={ability.specialty === true}
-          title={ability.name}
+          key={ index + ability.name }
+          database={ this.props.database }
+          showEmpty={ this.state.isShowEmptyAbilities }
+          specialty={ ability.specialty }
+          title={ ability.name }
         />
       )
     })
