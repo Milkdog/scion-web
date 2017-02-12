@@ -41,6 +41,7 @@ class StatCard extends Component {
 
   componentWillUnmount() {
     this.props.database.child(this.getStoragePath()).child(this.props.title).off('value')
+    this.props.database.child(this.getStoragePath()).child(this.props.title).off('child_removed')
   }
 
   getStoragePath() {

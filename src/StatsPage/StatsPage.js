@@ -6,6 +6,7 @@ import Attributes from '../Constants/Attributes'
 import ExperienceCard from '../ExperienceCard'
 import LegendCard from '../LegendCard'
 import WillpowerCard from '../WillpowerCard'
+import VirtuesSection from '../VirtuesSection'
 
 import './stats-page.scss'
 
@@ -128,9 +129,10 @@ class StatsPage extends Component {
 
         <div className="cardGroupRow">
           <div className="cardGroup">
-            <LegendCard database={ this.props.database } />
+            <VirtuesSection database={ this.props.database } />
           </div>
           <div className="cardGroup">
+            <LegendCard database={ this.props.database } />
             <WillpowerCard database={ this.props.database } />
           </div>
           <div className="cardGroup">

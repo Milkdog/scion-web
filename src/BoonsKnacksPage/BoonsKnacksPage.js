@@ -10,7 +10,7 @@ const { object } = React.PropTypes
 class BoonsKnacksPage extends Component {
   render() {
     return (
-      <div className="column">
+      <div className="columnPage">
         <div className="sectionContainer">
           <BoonsSection database={ this.props.database } />
         </div>
