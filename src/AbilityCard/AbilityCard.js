@@ -100,7 +100,6 @@ class AbilityCard extends Component {
       return (
         <div className="clickable" onClick={ () => { this.setState({ isModalVisible: true }) } }>
           Select specialty <FontAwesome name="arrow-circle-o-right" />
-
         </div>
       )
     }
@@ -147,7 +146,6 @@ class AbilityCard extends Component {
             { this.state.isEdit ? 'Update' : 'Save' } Special Ability
           </button>
         </div>
-
       </Modal>
     )
   }

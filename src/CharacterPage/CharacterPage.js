@@ -76,7 +76,7 @@ class CharacterPage extends Component {
               Calling
             </div>
             <div className="input">
-              <input value={ this.state.calling } onChange={ (event) => this.setState({ calling: event.target.value }) } />
+              <input value={ this.state.calling } onChange={ (event) => this.saveData({ calling: event.target.value }) } />
             </div>
           </div>
           <div className="inputRow">
@@ -84,7 +84,7 @@ class CharacterPage extends Component {
               Nature
             </div>
             <div className="input">
-              <input value={ this.state.nature } onChange={ (event) => this.setState({ nature: event.target.value }) } />
+              <input value={ this.state.nature } onChange={ (event) => this.saveData({ nature: event.target.value }) } />
             </div>
           </div>
           <div className="inputRow">
@@ -92,7 +92,7 @@ class CharacterPage extends Component {
               Pantheon
             </div>
             <div className="input">
-              <input value={ this.state.pantheon } onChange={ (event) => this.setState({ pantheon: event.target.value }) } />
+              <input value={ this.state.pantheon } onChange={ (event) => this.saveData({ pantheon: event.target.value }) } />
             </div>
           </div>
           <div className="inputRow">
@@ -100,7 +100,7 @@ class CharacterPage extends Component {
               God
             </div>
             <div className="input">
-              <input value={ this.state.god } onChange={ (event) => this.setState({ god: event.target.value }) } />
+              <input value={ this.state.god } onChange={ (event) => this.saveData({ god: event.target.value }) } />
             </div>
           </div>
         </div>
