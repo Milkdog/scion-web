@@ -47,6 +47,7 @@ class WillpowerCard extends Component {
   }
 
   componentWillUnmount() {
+    this.props.database.child('virtue').off('value')
     this.props.database.child(this.getStoragePath()).off('value')
   }
 
@@ -73,7 +74,7 @@ class WillpowerCard extends Component {
     for (let i=0; i < 12; i++) {
       const isActive = (i < this.state.rating)
       ratingBoxes.push(
-        <Box key={i} isActive={isActive} isRounded={true} onPress={() => { this.onPressIncrement(isActive, 'rating')}} />
+        <Box key={ i } isActive={ isActive } isRounded />
       )
     }
 
@@ -86,7 +87,7 @@ class WillpowerCard extends Component {
     for (let i=0; i < 12; i++) {
       const isActive = (i < this.state.tempRating)
       ratingBoxes.push(
-        <Box key={i} isActive={isActive} onPress={() => { this.onPressIncrement(isActive, 'tempRating')}} />
+        <Box key={ i } isActive={ isActive } onPress={ () => { this.onPressIncrement(isActive, 'tempRating')} } />
       )
     }
 

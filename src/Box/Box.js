@@ -21,7 +21,7 @@ class Box extends Component {
 }
 
 Box.propTypes = {
-  onPress: func.isRequired,
+  onPress: func,
   isActive: bool.isRequired,
   isRounded: bool
 }

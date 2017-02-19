@@ -4,3 +4,13 @@
   width: 300px;
   margin: 16px auto 0;
 }
+
+.notesContainer {
+  width: 600px;
+  margin: 0 auto;
+
+  .notes {
+    width: 100%;
+    height: 400px;
+  }
+}

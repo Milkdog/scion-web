@@ -13,7 +13,8 @@ class CharacterPage extends Component {
       calling: '',
       nature: '',
       pantheon: '',
-      god: ''
+      god: '',
+      notes: ''
     }
   }
 
@@ -21,9 +22,9 @@ class CharacterPage extends Component {
     // Load state from DB
     this.props.database.child(this.getStoragePath()).on('value', (snapshotData) => {
       if (snapshotData.val()) {
-        this.setState(snapshotData.val())
         this.setState({
-          isLoaded: true
+          isLoaded: true,
+          ...snapshotData.val()
         })
       }
     })
@@ -59,50 +60,58 @@ class CharacterPage extends Component {
 
   render() {
     return (
-      <div className="characterContainer">
-        <SelectCharacter database={ this.props.database.parent } doSetCharacter={ this.props.doSetCharacter.bind(this) } />
-        <hr />
-        <div className="form">
-          <div className="inputRow">
-            <div className="label">
-              Name
+      <div>
+        <div className="characterContainer">
+          <SelectCharacter database={ this.props.database.parent } doSetCharacter={ this.props.doSetCharacter.bind(this) } />
+          <hr />
+          <div className="form">
+            <div className="inputRow">
+              <div className="label">
+                Name
+              </div>
+              <div className="input">
+                <input value={ this.state.name } onChange={ (event) => this.handleUpdateName(event.target.value) } />
+              </div>
             </div>
-            <div className="input">
-              <input value={ this.state.name } onChange={ (event) => this.handleUpdateName(event.target.value) } />
+            <div className="inputRow">
+              <div className="label">
+                Calling
+              </div>
+              <div className="input">
+                <input value={ this.state.calling } onChange={ (event) => this.saveData({ calling: event.target.value }) } />
+              </div>
+            </div>
+            <div className="inputRow">
+              <div className="label">
+                Nature
+              </div>
+              <div className="input">
+                <input value={ this.state.nature } onChange={ (event) => this.saveData({ nature: event.target.value }) } />
+              </div>
+            </div>
+            <div className="inputRow">
+              <div className="label">
+                Pantheon
+              </div>
+              <div className="input">
+                <input value={ this.state.pantheon } onChange={ (event) => this.saveData({ pantheon: event.target.value }) } />
+              </div>
+            </div>
+            <div className="inputRow">
+              <div className="label">
+                God
+              </div>
+              <div className="input">
+                <input value={ this.state.god } onChange={ (event) => this.saveData({ god: event.target.value }) } />
+              </div>
             </div>
           </div>
-          <div className="inputRow">
-            <div className="label">
-              Calling
-            </div>
-            <div className="input">
-              <input value={ this.state.calling } onChange={ (event) => this.saveData({ calling: event.target.value }) } />
-            </div>
+        </div>
+        <div className="notesContainer">
+          <div className="label">
+            Notes
           </div>
-          <div className="inputRow">
-            <div className="label">
-              Nature
-            </div>
-            <div className="input">
-              <input value={ this.state.nature } onChange={ (event) => this.saveData({ nature: event.target.value }) } />
-            </div>
-          </div>
-          <div className="inputRow">
-            <div className="label">
-              Pantheon
-            </div>
-            <div className="input">
-              <input value={ this.state.pantheon } onChange={ (event) => this.saveData({ pantheon: event.target.value }) } />
-            </div>
-          </div>
-          <div className="inputRow">
-            <div className="label">
-              God
-            </div>
-            <div className="input">
-              <input value={ this.state.god } onChange={ (event) => this.saveData({ god: event.target.value }) } />
-            </div>
-          </div>
+          <textarea className="notes" value={ this.state.notes } onChange={ (event) => this.saveData({ notes: event.target.value }) } />
         </div>
       </div>
     )
