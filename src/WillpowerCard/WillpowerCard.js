@@ -18,6 +18,21 @@ class WillpowerCard extends Component {
   }
 
   componentDidMount() {
+    // Get total Willpower based on highest virtues
+    this.props.database.child('virtue').on('value', (snapshotData) => {
+      const virtueRatings = []
+
+      snapshotData.forEach((childSnapshot) => {
+        virtueRatings.push(childSnapshot.val().rating)
+      })
+
+      virtueRatings.sort()
+
+      this.setState({
+        rating: ((virtueRatings.pop() || 0) + (virtueRatings.pop() || 0))
+      })
+    })
+
     // Load state from DB
     this.props.database.child(this.getStoragePath()).on('value', (snapshotData) => {
       // If it doesn't exist in the DB, skip it
@@ -25,7 +40,9 @@ class WillpowerCard extends Component {
         return null
       }
 
-      this.setState(snapshotData.val())
+      this.setState({
+        tempRating: snapshotData.val().tempRating
+      })
     })
   }
 
