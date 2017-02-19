@@ -9,6 +9,11 @@
   width: 600px;
   margin: 0 auto;
 
+  @media screen and (max-width: $breakPhone) {
+    width: auto;
+    margin: 12px;
+  }
+
   .notes {
     width: 100%;
     height: 400px;

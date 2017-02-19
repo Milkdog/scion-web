@@ -11,12 +11,12 @@ class CombatPage extends Component {
     return (
       <div className="columnPage">
         <div className="sectionContainer">
+          <CombatStatsSection database={ this.props.database } />
+        </div>
+        <div className="sectionContainer">
           <WeaponSection database={ this.props.database } />
           <ArmorSection database={ this.props.database } />
           <BirthrightsSection database={ this.props.database } />
-        </div>
-        <div className="sectionContainer">
-          <CombatStatsSection database={ this.props.database } />
         </div>
       </div>
     )

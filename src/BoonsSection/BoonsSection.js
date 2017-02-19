@@ -128,11 +128,7 @@ class BoonsSection extends Component {
           isModalVisible: false
         })}
         contentLabel="Modify Boon"
-        style={{
-          content: {
-            width: '400px'
-          }
-        }}
+        portalClassName="portalModal"
       >
         <div className="modalClose btn" onClick={ this.handleToggleModal.bind(this) }>
           <FontAwesome
