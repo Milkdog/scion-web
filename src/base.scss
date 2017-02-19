@@ -54,6 +54,12 @@ button {
   align-content: center;
   height: 300px;
   margin: 12px 0;
+
+  @media screen and (max-width: $breakPhone) {
+    height: auto;
+    width: 320px;
+    margin: 12px auto;
+  }
 }
 
 .cardGroup {

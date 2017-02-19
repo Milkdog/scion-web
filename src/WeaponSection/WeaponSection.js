@@ -165,11 +165,7 @@ class WeaponsSection extends Component {
           isModalVisible: false
         })}
         contentLabel="Modify Weapon"
-        style={{
-          content: {
-            width: '400px'
-          }
-        }}
+        portalClassName="portalModal"
       >
         <div className="modalClose btn" onClick={ this.handleToggleModal.bind(this) }>
           <FontAwesome

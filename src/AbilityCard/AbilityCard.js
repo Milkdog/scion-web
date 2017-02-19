@@ -115,11 +115,7 @@ class AbilityCard extends Component {
           isModalVisible: false
         })}
         contentLabel="Special Ability"
-        style={{
-          content: {
-            width: '400px'
-          }
-        }}
+        portalClassName="portalModal"
       >
         <div className="modalClose btn" onClick={ () => { this.setState({ isModalVisible: false })} }>
           <FontAwesome
