@@ -18,7 +18,10 @@ const Purviews = [
   'Star',
   'Sun',
   'War',
-  'Water'
+  'Water',
+  'Magic',
+  'Prophecy',
+  'Mystery',
 ]
 
 export default Purviews
