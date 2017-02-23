@@ -335,9 +335,16 @@ export default class CombatStatsSection extends Component {
 
   render() {
     if (!this.state.stats.legend) {
-      return null
+      return (
+        <div>
+          <div className="header">
+            There's a problem!
+          </div>
+          We only allow those that are legendary to see their stats. (Add some legend.)
+        </div>
+      )
     }
-    // {JSON.stringify(this.state)}
+
     return (
       <div>
         <div className="header">
