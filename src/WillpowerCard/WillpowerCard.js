@@ -28,8 +28,14 @@ class WillpowerCard extends Component {
 
       virtueRatings.sort()
 
+      const willpowerRating = (virtueRatings.pop() || 0) + (virtueRatings.pop() || 0)
+
+      this.props.database.child(this.getStoragePath()).set({
+        rating: willpowerRating
+      })
+
       this.setState({
-        rating: ((virtueRatings.pop() || 0) + (virtueRatings.pop() || 0))
+        rating: willpowerRating
       })
     })
 

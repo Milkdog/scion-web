@@ -222,7 +222,7 @@ export default class CombatStatsSection extends Component {
           database={ this.props.database }
           key='legend'
           title='Legend'
-          rating={ this.state.stats.legend.rating}
+          rating={ this.state.stats.legend ? this.state.stats.legend.rating : 0 }
         />
       ),
       (
@@ -230,7 +230,7 @@ export default class CombatStatsSection extends Component {
           database={ this.props.database }
           key='willpower'
           title='Willpower'
-          rating={ this.state.stats.willpower.rating}
+          rating={ this.state.stats.willpower ? this.state.stats.willpower.rating : 0 }
         />
       )
     ]
