@@ -60,6 +60,11 @@
   .diceSuccesses {
     font-size: 60px;
     font-weight: bold;
+    color: #333;
+
+    &.active {
+      color: black;
+    }
   }
 
   .diceModalLabel {

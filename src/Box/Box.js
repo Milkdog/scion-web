@@ -3,7 +3,7 @@ import classNames from 'classnames'
 
 import './box.scss'
 
-const { func, bool } = React.PropTypes
+const { func, bool } = React.PropTypes;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 class Box extends Component {
   render() {
@@ -12,7 +12,7 @@ class Box extends Component {
       active: this.props.isActive,
       inactive: !this.props.isActive,
       rounded: this.props.isRounded
-    })
+    });;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
     return (
       <div onClick={ this.props.onPress } className={ boxClasses } />
@@ -24,6 +24,6 @@ Box.propTypes = {
   onPress: func,
   isActive: bool.isRequired,
   isRounded: bool
-}
+};;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 export default Box

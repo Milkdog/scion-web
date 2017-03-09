@@ -4,7 +4,7 @@ import FontAwesome from 'react-fontawesome'
 
 class BoonCard extends Component {
   constructor(props) {
-    super(props)
+    super(props);;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
     this.state = {
       isDeleteConfirm: false
@@ -28,7 +28,7 @@ class BoonCard extends Component {
       controlItem: true,
       btn: true,
       warning: this.state.isDeleteConfirm
-    })
+    });;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
     return (
       <div className="card cardContainer">

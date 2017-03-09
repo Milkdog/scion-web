@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import classNames from 'classnames'
 
 const diceMinimum = 1
 const diceMaximum = 10
@@ -14,6 +15,8 @@ class DiceModal extends Component {
 
     this.state = {
       isRolling: true,
+      rawDiceRolls: [],
+      lastDiceRolls: [],
       dice: 0,
       autoSuccess: 0,
       rawBonus: 0
@@ -59,6 +62,7 @@ class DiceModal extends Component {
   handleClearSelectedStats() {
     this.props.database.child(this.getStoragePath()).remove()
     this.setState({
+      rawDiceRolls: [],
       dice: 0,
       autoSuccess: 0,
       rawBonus: 0
@@ -68,6 +72,19 @@ class DiceModal extends Component {
   handleIncrementDice(diceChange) {
     this.setState({
       dice: this.state.dice + diceChange
+    })
+  }
+
+  handleRollDice() {
+    const rawDiceRolls = []
+
+    for (let i = 0; i < this.state.dice; i++) {
+      rawDiceRolls.push(this.rollDie())
+    }
+
+    this.setState({
+      lastDiceRolls: this.state.rawDiceRolls,
+      rawDiceRolls
     })
   }
 
@@ -83,9 +100,7 @@ class DiceModal extends Component {
     let successes = 0
     let botches = 0
 
-    for (let i = 0; i < numberDice; i++) {
-      const result = this.rollDie()
-
+    this.state.rawDiceRolls.map((result) => {
       if (result === doubleCount) {
         successes += 2
       } else if (result >= minimumSuccessCount) {
@@ -93,7 +108,7 @@ class DiceModal extends Component {
       } else if (result === botch) {
         botches++
       }
-    }
+    })
 
     if (successes > 0) {
       return successes
@@ -109,21 +124,28 @@ class DiceModal extends Component {
   }
 
   renderResults() {
-    const rawSuccesses = this.getRawSuccesses(this.state.dice)
+    const rawSuccesses = this.getRawSuccesses()
 
     if (rawSuccesses < 0) {
       // Botch
       return (
         <div>
           <img className="diceBotch" src="/botch.jpg" alt="Botch" />
+          <div className="diceInfo">{ this.state.rawDiceRolls.join(', ') }</div>
         </div>
       )
 
     } else {
       const calculatedSuccesses = rawSuccesses + this.state.autoSuccess + this.state.rawBonus
+
+      const successClasses = classNames({
+        diceSuccesses: true,
+        active: this.state.rawDiceRolls === this.state.lastDiceRolls
+      })
+
       return (
         <div>
-          <div className="diceSuccesses">{ calculatedSuccesses }</div>
+          <div className={ successClasses }>{ calculatedSuccesses }</div>
           <div className="diceModalLabel">Successes</div>
           <div className="changeDiceButtons">
             <button onClick={ this.handleIncrementDice.bind(this, -1) }>
@@ -135,6 +157,7 @@ class DiceModal extends Component {
           </div>
           <div className="diceInfo">Rolled { this.state.dice }d10</div>
           <div className="diceInfo">Dice Successes: { rawSuccesses }</div>
+          <div className="diceInfo">{ this.state.rawDiceRolls.join(', ') }</div>
           <div className="diceInfo">Auto Successes: { this.state.autoSuccess }</div>
         </div>
       )
@@ -149,6 +172,11 @@ class DiceModal extends Component {
       <div className="diceModalContainer">
         <div className="header">
           Roll Dice
+        </div>
+        <div className="changeDiceButtons">
+          <button onClick={ this.handleRollDice.bind(this) }>
+            Roll Dice
+          </button>
         </div>
         { this.renderResults() }
         <button onClick={ this.handleClearSelectedStats.bind(this) }>

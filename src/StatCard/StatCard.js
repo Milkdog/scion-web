@@ -72,14 +72,14 @@ class StatCard extends Component {
   }
 
   render() {
-    const epicText = (this.props.epic !== null) ? ' (' + this.props.epic + ')' : ''
-    const modifierText = (this.props.modifier !== null) ? ' ' + this.props.modifier : ''
-    const rawBonusText = (this.props.rawBonus !== null) ? 'd + ' + this.props.rawBonus : ''
+    const epicText = (this.props.epic !== null) ? ' (' + this.props.epic + ')' : '';;;;;;;
+    const modifierText = (this.props.modifier !== null) ? ' ' + this.props.modifier : '';;;;;;;;;;
+    const rawBonusText = (this.props.rawBonus !== null) ? 'd + ' + this.props.rawBonus : '';;;;;;;;;;
 
     const cardClasses = classNames(
       'statItem',
       { statSelected: this.state.isSelected }
-    )
+    );;;;;;;;;;
 
     return (
       <div className={ cardClasses } onClick={this.handleSelect.bind(this)}>
