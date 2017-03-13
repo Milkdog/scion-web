@@ -127,6 +127,24 @@ export default class CombatStatsSection extends Component {
       )/2)
   }
 
+  calculateDodgeMdv() {
+    return Math.ceil((
+        this.getRating(this.state.stats.attribute.Charisma)
+        + this.getRating(this.state.stats.ability.Integrity)
+        + this.getRating(this.state.stats.legend)
+      )/2)
+  }
+
+  calculateParryMdv(type) {
+    return Math.ceil((
+        this.getRating(this.state.stats.attribute.Manipulation)
+        + this.getRating(this.state.stats.ability[type])
+        + this.getRating(this.state.stats.legend)
+      )/2
+      + this.getEpicModifier(this.state.stats.attribute.Manipulation)
+    )
+  }
+
   calculateJoinBattle() {
     const dice = (
       this.getRating(this.state.stats.attribute.Wits)
@@ -296,6 +314,38 @@ export default class CombatStatsSection extends Component {
           key='parryDv'
           title='Parry DV'
           rating={ this.calculateParryDv() }
+        />
+      ),
+      (
+        <StatCard
+          database={ this.props.database }
+          key='dodgeMdv'
+          title='Dodge MDV'
+          rating={ this.calculateDodgeMdv() }
+        />
+      ),
+      (
+        <StatCard
+          database={ this.props.database }
+          key='parryMdvLarceny'
+          title='Parry MDV (Larceny)'
+          rating={ this.calculateParryDv('Larceny') }
+        />
+      ),
+      (
+        <StatCard
+          database={ this.props.database }
+          key='parryMdvPresence'
+          title='Parry MDV (Presence)'
+          rating={ this.calculateParryDv('Presence') }
+        />
+      ),
+      (
+        <StatCard
+          database={ this.props.database }
+          key='parryMdvCommand'
+          title='Parry MDV (Command)'
+          rating={ this.calculateParryDv('Command') }
         />
       ),
       (

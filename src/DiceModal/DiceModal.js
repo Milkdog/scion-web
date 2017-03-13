@@ -16,8 +16,8 @@ class DiceModal extends Component {
     this.state = {
       isRolling: true,
       rawDiceRolls: [],
-      lastDiceRolls: [],
       dice: 0,
+      lastDice: 0,
       autoSuccess: 0,
       rawBonus: 0
     }
@@ -44,6 +44,7 @@ class DiceModal extends Component {
 
         this.setState({
           dice,
+          lastDice: dice,
           autoSuccess,
           rawBonus
         })
@@ -64,6 +65,7 @@ class DiceModal extends Component {
     this.setState({
       rawDiceRolls: [],
       dice: 0,
+      lastDice: 0,
       autoSuccess: 0,
       rawBonus: 0
     })
@@ -71,7 +73,8 @@ class DiceModal extends Component {
 
   handleIncrementDice(diceChange) {
     this.setState({
-      dice: this.state.dice + diceChange
+      dice: this.state.dice + diceChange,
+      lastDice: this.state.dice
     })
   }
 
@@ -83,8 +86,8 @@ class DiceModal extends Component {
     }
 
     this.setState({
-      lastDiceRolls: this.state.rawDiceRolls,
-      rawDiceRolls
+      rawDiceRolls,
+      lastDice: this.state.dice
     })
   }
 
@@ -140,7 +143,7 @@ class DiceModal extends Component {
 
       const successClasses = classNames({
         diceSuccesses: true,
-        active: this.state.rawDiceRolls === this.state.lastDiceRolls
+        active: this.state.dice === this.state.lastDice
       })
 
       return (

@@ -49,6 +49,7 @@
 
 .diceModalContainer {
   position: absolute;
+  width: 240px;
   right: 40px;
   bottom: 50px;
   border: 2px solid #333;
@@ -60,7 +61,7 @@
   .diceSuccesses {
     font-size: 60px;
     font-weight: bold;
-    color: #333;
+    color: #bbb;
 
     &.active {
       color: black;
