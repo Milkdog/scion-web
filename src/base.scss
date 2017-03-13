@@ -75,6 +75,10 @@ button {
 .card {
   width: 300px;
 
+  @media screen and (max-width: $breakPhone) {
+    width: auto;
+  }
+
   .cardTitle {
     float: left;
     margin-left: 4px;
@@ -103,6 +107,7 @@ button {
 
 .cardList {
   clear: left;
+  width: 100%;
   display: flex;
   flex-flow: row wrap;
 }
@@ -212,7 +217,7 @@ button {
 .statItem {
   display: flex;
   flex-flow: row nowrap;
-  width: 180px;
+  width: 170px;
   margin: 1px;
   padding: 1px;
 

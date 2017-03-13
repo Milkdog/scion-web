@@ -36,6 +36,10 @@
     color: #bbb;
     @extend .clickable;
 
+    @media screen and (max-width: $breakPhone) {
+      max-width: 70px;
+    }
+
     &.footerActive {
       color: #fff;
       font-weight: bold;
@@ -57,6 +61,15 @@
   background-color: white;
   padding: 16px;
   text-align: center;
+
+  .diceContent {
+    display: flex;
+    flex-flow: row nowrap;
+
+    .diceGroup {
+      width: 49%;
+    }
+  }
 
   .diceSuccesses {
     font-size: 60px;

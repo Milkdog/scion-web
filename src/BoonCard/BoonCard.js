@@ -28,7 +28,7 @@ class BoonCard extends Component {
       controlItem: true,
       btn: true,
       warning: this.state.isDeleteConfirm
-    });;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+    })
 
     return (
       <div className="card cardContainer">

@@ -126,13 +126,18 @@ class DiceModal extends Component {
     return Math.floor(Math.random() * (diceMaximum - diceMinimum + 1)) + diceMinimum;
   }
 
-  renderResults() {
+  renderModalContents() {
     const rawSuccesses = this.getRawSuccesses()
 
     if (rawSuccesses < 0) {
       // Botch
       return (
         <div>
+          <div className="changeDiceButtons">
+            <button onClick={ this.handleRollDice.bind(this) }>
+              Roll Dice
+            </button>
+          </div>
           <img className="diceBotch" src="/botch.jpg" alt="Botch" />
           <div className="diceInfo">{ this.state.rawDiceRolls.join(', ') }</div>
         </div>
@@ -147,21 +152,35 @@ class DiceModal extends Component {
       })
 
       return (
-        <div>
-          <div className={ successClasses }>{ calculatedSuccesses }</div>
-          <div className="diceModalLabel">Successes</div>
-          <div className="changeDiceButtons">
-            <button onClick={ this.handleIncrementDice.bind(this, -1) }>
-              -
-            </button>
-            <button onClick={ this.handleIncrementDice.bind(this, 1) }>
-              +
+        <div className="diceContent">
+          <div className="diceGroup">
+            <div className={ successClasses }>{ calculatedSuccesses }</div>
+            <div className="diceModalLabel">Successes</div>
+            <div className="changeDiceButtons">
+              <button onClick={ this.handleIncrementDice.bind(this, -1) }>
+                -
+              </button>
+              <button onClick={ this.handleIncrementDice.bind(this, 1) }>
+                +
+              </button>
+            </div>
+          </div>
+          <div className="diceGroup">
+            <div className="changeDiceButtons">
+              <button onClick={ this.handleRollDice.bind(this) }>
+                Roll Dice
+              </button>
+            </div>
+
+            <div className="diceInfo">Rolled { this.state.dice }d10</div>
+            <div className="diceInfo">Dice Successes: { rawSuccesses }</div>
+            <div className="diceInfo">{ this.state.rawDiceRolls.join(', ') }</div>
+            <div className="diceInfo">Auto Successes: { this.state.autoSuccess }</div>
+
+            <button onClick={ this.handleClearSelectedStats.bind(this) }>
+              Clear Dice
             </button>
           </div>
-          <div className="diceInfo">Rolled { this.state.dice }d10</div>
-          <div className="diceInfo">Dice Successes: { rawSuccesses }</div>
-          <div className="diceInfo">{ this.state.rawDiceRolls.join(', ') }</div>
-          <div className="diceInfo">Auto Successes: { this.state.autoSuccess }</div>
         </div>
       )
     }
@@ -176,15 +195,7 @@ class DiceModal extends Component {
         <div className="header">
           Roll Dice
         </div>
-        <div className="changeDiceButtons">
-          <button onClick={ this.handleRollDice.bind(this) }>
-            Roll Dice
-          </button>
-        </div>
-        { this.renderResults() }
-        <button onClick={ this.handleClearSelectedStats.bind(this) }>
-          Clear Dice
-        </button>
+        { this.renderModalContents() }
       </div>
     )
   }
