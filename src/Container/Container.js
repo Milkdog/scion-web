@@ -51,6 +51,10 @@ class Container extends Component {
   }
 
   componentDidMount() {
+    this.props.database.update({
+      lastLogin: Date.now()
+    })
+
     if (!this.props.character) {
       this.setState({
         selectedPage: 'character'
