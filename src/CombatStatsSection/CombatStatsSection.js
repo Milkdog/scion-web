@@ -141,7 +141,7 @@ export default class CombatStatsSection extends Component {
         + this.getRating(this.state.stats.ability[type])
         + this.getRating(this.state.stats.legend)
       )/2
-      + this.getEpicModifier(this.state.stats.attribute.Manipulation)
+      + this.getEpicModifier(this.state.stats.attribute.Manipulation.rating)
     )
   }
 
@@ -329,7 +329,7 @@ export default class CombatStatsSection extends Component {
           database={ this.props.database }
           key='parryMdvLarceny'
           title='Parry MDV (Larceny)'
-          rating={ this.calculateParryDv('Larceny') }
+          rating={ this.calculateParryMdv('Larceny') }
         />
       ),
       (
@@ -337,7 +337,7 @@ export default class CombatStatsSection extends Component {
           database={ this.props.database }
           key='parryMdvPresence'
           title='Parry MDV (Presence)'
-          rating={ this.calculateParryDv('Presence') }
+          rating={ this.calculateParryMdv('Presence') }
         />
       ),
       (
@@ -345,7 +345,7 @@ export default class CombatStatsSection extends Component {
           database={ this.props.database }
           key='parryMdvCommand'
           title='Parry MDV (Command)'
-          rating={ this.calculateParryDv('Command') }
+          rating={ this.calculateParryMdv('Command') }
         />
       ),
       (
@@ -390,7 +390,7 @@ export default class CombatStatsSection extends Component {
           <div className="header">
             There's a problem!
           </div>
-          We only allow those that are legendary to see their stats. (Add some legend.)
+          We only allow those that are legendary to see their stats. (Add some legend. Or wait if just loading...)
         </div>
       )
     }

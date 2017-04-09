@@ -5,6 +5,7 @@ import StatsPage from '../StatsPage/StatsPage'
 import BoonsKnacksPage from '../BoonsKnacksPage/BoonsKnacksPage'
 import CharacterPage from '../CharacterPage'
 import CombatPage from '../CombatPage'
+import DMPage from '../DMPage'
 import DiceModal from '../DiceModal'
 
 import 'react-select/dist/react-select.css'
@@ -34,6 +35,12 @@ const pages = [
     component: CharacterPage
   },
   {
+    id: 'dm',
+    name: 'DM',
+    component: DMPage,
+    isAdminOnly: true
+  },
+  {
     id: 'roll',
     name: 'Roll Dice',
     isModal: true
@@ -46,13 +53,26 @@ class Container extends Component {
 
     this.state = {
       selectedPage: 'stats',
-      isDiceModalVisible: false
+      isDiceModalVisible: false,
+      isAdmin: false
     }
   }
 
   componentDidMount() {
     this.props.database.update({
       lastLogin: Date.now()
+    })
+
+    // Find out if the character is an Admin
+    this.props.database.child('isAdmin').on('value', (snapshotData) => {
+      // If it doesn't exist in the DB, skip it
+      if (snapshotData.val() === null) {
+        return null
+      }
+
+      this.setState({
+        isAdmin: snapshotData.val()
+      })
     })
 
     if (!this.props.character) {
@@ -98,6 +118,10 @@ class Container extends Component {
         <div className="footer">
           {
             pages.map((page, index) => {
+              if (page.isAdminOnly && !this.state.isAdmin) {
+                return null
+              }
+
               const itemClasses = classNames({
                 footerItem: true,
                 footerActive: this.state.selectedPage === page.id

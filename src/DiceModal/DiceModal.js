@@ -111,15 +111,17 @@ class DiceModal extends Component {
       } else if (result === botch) {
         botches++
       }
+
+      return null
     })
 
     if (successes > 0) {
       return successes
     } else if (botches > 0) {
       return -1
-    } else {
-      return 0
     }
+
+    return 0
   }
 
   rollDie() {
