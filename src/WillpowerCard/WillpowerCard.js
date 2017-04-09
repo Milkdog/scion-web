@@ -45,9 +45,9 @@ class WillpowerCard extends Component {
       if (snapshotData.val() === null) {
         return null
       }
-
+      
       this.setState({
-        tempRating: snapshotData.val().tempRating
+        tempRating: snapshotData.val().tempRating || 0
       })
     })
   }
