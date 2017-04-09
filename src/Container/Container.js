@@ -52,7 +52,7 @@ class Container extends Component {
     super(props)
 
     this.state = {
-      selectedPage: 'dm',
+      selectedPage: 'stats',
       isDiceModalVisible: false,
       isAdmin: false
     }
