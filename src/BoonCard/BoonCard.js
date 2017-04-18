@@ -4,10 +4,11 @@ import FontAwesome from 'react-fontawesome'
 
 class BoonCard extends Component {
   constructor(props) {
-    super(props);;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+    super(props)
 
     this.state = {
-      isDeleteConfirm: false
+      isDeleteConfirm: false,
+      isDescriptionVisible: false,
     }
   }
 
@@ -21,6 +22,12 @@ class BoonCard extends Component {
       // On next press
       this.props.onDelete()
     }
+  }
+
+  handleToggleVisible() {
+    this.setState({
+      isDescriptionVisible: !this.state.isDescriptionVisible
+    })
   }
 
   render() {
@@ -60,7 +67,21 @@ class BoonCard extends Component {
           Cost: { this.props.cost }
         </div>
         <div className="descriptionContainer">
-          { this.props.description }
+          <div
+            className="toggleVisibleButton"
+            onClick={ this.handleToggleVisible.bind(this) }
+          >
+            {
+              this.state.isDescriptionVisible ?
+                <FontAwesome name="minus-square" />
+                : <FontAwesome name="plus-square" />
+            }
+          </div>
+          {
+            this.state.isDescriptionVisible ?
+              this.props.description
+              : null
+          }
         </div>
       </div>
     )
