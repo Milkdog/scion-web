@@ -151,10 +151,9 @@ export default class CombatStatsSection extends Component {
       + this.getRating(this.state.stats.ability.Awareness)
     )
 
-    const autoSuccesses = this.getEpicModifier(this.state.stats.attribute.Wits.epic)
     return {
       dice: dice,
-      rawBonus: autoSuccesses
+      epic: this.state.stats.attribute.Wits.epic
     }
   }
 
@@ -354,7 +353,7 @@ export default class CombatStatsSection extends Component {
           key='joinBattle'
           title='Join Battle'
           rating={ joinBattle.dice }
-          rawBonus={ joinBattle.rawBonus }
+          epic={ joinBattle.epic }
         />
       )
     ]
